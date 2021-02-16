@@ -21,14 +21,8 @@ const gameScores = {
     const playerWinsText = 'Player Wins!';
     const computerWinsText = 'Computer Wins!';
 
-    if(yourChoice === 'Rock' && computerChoice === 'Rock' ||
-    yourChoice === 'Paper' && computerChoice === 'Paper' ||
-    yourChoice === 'Scissors' && computerChoice === 'Scissors'
-    ) {
-        results.innerText = drawText;
-    }
-
-
+    if(yourChoice === computerChoice) results.innerText = drawText;
+    
     if(yourChoice === 'Rock' && computerChoice === 'Scissors' ||
     yourChoice === 'Paper' && computerChoice === 'Rock' ||
     yourChoice === 'Scissors' && computerChoice === 'Paper'
