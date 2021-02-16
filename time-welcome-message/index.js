@@ -10,9 +10,9 @@ button.addEventListener('click', () => {
     let timeOfDay = '';
     if(currentTime > 6 && currentTime < 12) {
         timeOfDay = "morning"
-    } else if(currentTime >= 12 && currentTime < 18) {
+    } else if(currentTime < 18) {
         timeOfDay = "afternoon"
-    } else if(currentTime >= 18 && currentTime < 21) {
+    } else if(currentTime < 21) {
         timeOfDay = "evening"
     } else {
         timeOfDay = "night"
