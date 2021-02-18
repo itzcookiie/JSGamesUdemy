@@ -7,29 +7,32 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting i
 
 let startTime;
 
-startBtn.addEventListener('click', e => {
+startBtn.addEventListener('click', function(e) {
     output.innerText = text;
-    e.target.classList.add('hide');
+    textarea.disabled = false;
+    textarea.value = '';
+    this.classList.add('hide');
     doneBtn.classList.remove('hide'); 
     startTime = performance.now();
 })
 
-doneBtn.addEventListener('click', e => {
+doneBtn.addEventListener('click', function(e) {
     const finishedTime = performance.now();
     const timeDiff = (finishedTime - startTime) / 1000;
     const typedText = textarea.value;
-    const numOfWordsTyped = typedText.length;
+    const numOfWordsTyped = typedText.split(' ').length;
     const wordsPerMinute = (numOfWordsTyped * 60) / timeDiff 
     const numOfWords = text.split(' ').length;
     const numOfCorrectTypedWords = text
     .split(' ')
-    .filter(word => typedText.split('').some(typedWord => typedWord === word))
+    .filter(word => typedText.split(' ').some(typedWord => typedWord === word))
     .length;
     output.innerHTML = 
     `
         <p>You typed at ${wordsPerMinute} words per minute</p>
         <p>${numOfCorrectTypedWords} correct out of ${numOfWords} words</p>
     `
-    e.target.classList.add('hide');
+    this.classList.add('hide');
     startBtn.classList.remove('hide');
+    textarea.disabled = true;
 })
