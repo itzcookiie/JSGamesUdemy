@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    
+}
+
+.output {
+    font-size: 1.5rem;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 10px 25px;
+}
+
+.hide {
+    display: none;
+}
