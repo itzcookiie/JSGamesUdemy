@@ -22,3 +22,8 @@ body {
     border: 1px solid;
     margin: 10px;
 }
+
+.container > div:active {
+    border-color: red;
+    color: red;
+}
