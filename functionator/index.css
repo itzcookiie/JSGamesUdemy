@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.moving-object-container {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    font-size: 2rem;
+}
+
+.actions-container {
+    height: 75px;
+    display: flex;
+}
+
+.action {
+    height: 100%;
+    padding: 20px;
+    border: 1px solid black;
+    font-size: 2rem;
+}
+
+.action:hover {
+    color: white;
+    background-color: red;
+    cursor: pointer;
+}
