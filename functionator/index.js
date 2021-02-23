@@ -1,11 +1,11 @@
 const actionsContainer = document.createElement('div'),
 movingObjectContainer = document.createElement('div');
 
-let actions = [];
+const actions = [];
 const position = {
     top: 0,
     left: 0
-}
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     const fragment = document.createDocumentFragment();
@@ -19,10 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('keydown', e => {
     const transform = handleKeyboard(e.key);
-    if(transform) {
-        actions.push(transform);
-        arrangeActions();
-    }
+    if(transform) actions.push(transform);
 })
 
 function handleKeyboard(key) {
@@ -30,37 +27,35 @@ function handleKeyboard(key) {
     actionElement.classList.add('action');
     actionElement.addEventListener('click', function(e) {
         actionsContainer.removeChild(this);
-        const leftSide = actions.slice(0, +this.dataset.id);
-        const rightSide = actions.slice(+this.dataset.id+1);
-        actions = [...leftSide, ...rightSide];
-        arrangeActions();
+        const index = actions.findIndex(action => action.element === this);
+        actions.splice(index, 1);
     })
     switch(key) {
         case 'c': 
-            movingObjectContainer.style.backgroundColor = `rgb(${randomNumGenerator()}, ${randomNumGenerator()}, ${randomNumGenerator()})`
+            movingObjectContainer.style.backgroundColor = `rgb(${randomNumGenerator()}, ${randomNumGenerator()}, ${randomNumGenerator()})`;
             break;
         case 'ArrowUp': {
-            return transformObject(actionElement, 'up', 'top', -100);
+            return moveCommand(actionElement, 'up', 'top', -100);
         }
         case 'ArrowRight': {
-            return transformObject(actionElement, 'right', 'left', 100);
+            return moveCommand(actionElement, 'right', 'left', 100);
         }
         case 'ArrowDown': {
-            return transformObject(actionElement, 'down', 'top', 100);
+            return moveCommand(actionElement, 'down', 'top', 100);
         }
         case 'ArrowLeft': {
-            return transformObject(actionElement, 'left', 'left', -100);
+            return moveCommand(actionElement, 'left', 'left', -100);
         }
         case " ": {
-            // runActions(0);
-            let time = 100;
             actions.forEach((action,index) => {
-                setTimeout(() => {
-                    actionsContainer.removeChild(action.element);
-                    action.move();
-                    actions.shift();
-                    console.log(index)
-                }, time*index)
+                (function(time) {
+                    setTimeout(() => {
+                        actionsContainer.removeChild(action.element);
+                        action.move();
+                        actions.shift();
+                        if(!actions.length) movingObjectContainer.innerText = 'Hello World!';
+                    }, time*index);
+                })(100);
             })
         }
     }
@@ -71,13 +66,7 @@ function randomNumGenerator() {
     return Math.floor(Math.random() * 256);
 }
 
-function arrangeActions() {
-    [...actionsContainer.children].forEach((action,index) => {
-        action.setAttribute('data-id', index)
-    });
-}
-
-function transformObject(element, direction, objectPosition, distance) {
+function moveCommand(element, direction, objectPosition, distance) {
     element.innerText = `+${direction}`;
     actionsContainer.appendChild(element);
     return {
