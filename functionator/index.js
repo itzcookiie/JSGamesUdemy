@@ -45,6 +45,9 @@ function handleKeyboard(key) {
         }
         case " ": {
             // Did it like this for fun
+            // Also because I wanted to use an alternative other than recursive function
+            // Because that is what the guy who made the solutions did
+            // Basically prove myself I can do it
             runActions();
         }
     }
