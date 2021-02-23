@@ -59,9 +59,8 @@ function handleKeyboard(key) {
 }
 
 async function runActions() {
-    while(actions.length) {
-        await delay();
-    }
+    while(actions.length) await delay();
+    
 }
 
 function delay() {
