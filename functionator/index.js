@@ -44,6 +44,7 @@ function handleKeyboard(key) {
             return moveCommand(actionElement, 'left', 'left', -distance);
         }
         case " ": {
+            // Did it like this for fun
             runActions();
         }
     }
