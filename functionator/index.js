@@ -48,6 +48,10 @@ function handleKeyboard(key) {
             // Also because I wanted to use an alternative other than recursive function
             // Because that is what the guy who made the solutions did
             // Basically prove myself I can do it
+
+            // IE. with this, you can add extra commands after the object starts moving
+            // By pressing any of the arrow keys
+            // Because runActions is using a while loop
             runActions();
         }
     }
