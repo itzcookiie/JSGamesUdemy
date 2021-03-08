@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100vw;
+}
+
+.panel {
+    border: 1px solid;
+    margin: 5px;
+}
+
+.panel .head {
+    color: white;
+    background-color: black;
+}
+
+.panel .body {
+    display: none;
+}
+
+.panel.active .body {
+    display: block;
+}
+
+.panel.active .head {
+    background-color: grey;
+}
