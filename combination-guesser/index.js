@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkComboBtn = createElement('button');
     const instruction = createElement('p');
     const fragment = document.createDocumentFragment();
+    let gameStart = false;
 
     gameMessage.innerText = 'Guess the combo';
     combinationContainer.innerHTML =
@@ -26,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     checkComboBtn.addEventListener('click', checkCombination);
 
     function checkCombination(e) {
-        if(this.innerText === 'Restart Game') {
+        if(gameStart) {
+            gameStart = false;
             gameMessage.innerText = 'Guess the combo';
             checkComboBtn.innerText = 'Check Combo';
             combination = createCombination();
@@ -59,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(matchingNumbers === combinationContainer.children.length) {
             gameMessage.innerText = `You solved the combo in ${guesses} guesses`;
             checkComboBtn.innerText = 'Restart Game';
+            gameStart = true;
         }
     }
 
