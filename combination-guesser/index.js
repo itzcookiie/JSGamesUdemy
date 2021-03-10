@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             guesses = 0;
             [...combinationContainer.children].forEach(input => {
                 input.value = 0;
-                input.style.backgroundColor = 'white';
+                input.style.removeProperty("background-color");
+                input.style.color = 'black';
             });
             return;
         }
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const actualValue = combination[index];
             if(enteredValue === actualValue) {
                 input.style.backgroundColor = 'green';
+                input.style.color = 'white';
                 matchingNumbers++;
             }
              else if(enteredValue > actualValue) {
