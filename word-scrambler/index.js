@@ -4,28 +4,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const output = document.querySelector('.output'),
     input = document.querySelector('input'),
     button = document.querySelector('button');
+    let word;
+    let scrambledWord;
     let gameStart = false;
 
     button.addEventListener('click', () => {
         if(!gameStart) {
             button.innerText = 'Guess';
             input.classList.remove('hide');
-            output.innerText = '';
-            const word = selectRandomWord();
-            const scrambledWord = scrambleWord(word);
-            input.word = word;
-            input.scrambledWord = scrambleWord(word);
+            input.value = '';
+            word = selectRandomWord();
+            scrambledWord = scrambleWord(word);
             output.innerText = scrambledWord;
             gameStart = true;
         } else {
             const guessedWord = input.value;
-            if(input.word === guessedWord) {
-                output.innerText = `Correct it was ${input.word}`;
+            if(word === guessedWord) {
+                output.innerText = `Correct it was ${word}`;
                 button.innerText = 'Start';
                 input.classList.add('hide');
                 gameStart = false;
             } else {
-                output.innerText = `Wrong ${input.scrambledWord}`
+                output.innerText = `Wrong ${scrambledWord}`
             }
         }
     })
