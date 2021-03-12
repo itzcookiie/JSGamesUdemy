@@ -7,17 +7,25 @@ const days = document.querySelector('.days'),
 const secondsInADay = 60 * 60 * 24;
 const secondsInAnHour = 60 * 60;
 const secondsInAMinute = 60;
+let interval;
+let stopCountdown = false;
 
 date.addEventListener('change', function(e){
-        setInterval(() => {
-            countdown(this.value);
-        })
+        clearInterval(interval);
+        countdown(this.value)
+        interval = setInterval(() => {
+            if(!stopCountdown) countdown(this.value);
+        }, 1000)
     })
 
     function countdown(userDate) {
         const timeNow = Date.now();
         const selectedTime = new Date(userDate);
         const timeDiff = (selectedTime - timeNow) / 1000;
+        if(timeDiff <= 0) {
+            clearInterval(interval);
+            stopCountdown = true;
+        }
         const daysSince = timeDiff / secondsInADay;
         const timeInDays = parseInt(daysSince);
         const hoursSince = (timeDiff % secondsInADay) / secondsInAnHour;
